@@ -1,0 +1,63 @@
+﻿@model IEnumerable<app_ds501.Models.Servicio>
+
+@{
+    ViewData["Title"] = "Servicios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listado de Servicios</h1>
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Servicio" asp-action="Create">Agregar Servicio</a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(ser => ser.codigo_servicio)</td>
+                        <td>@Html.DisplayNameFor(ser => ser.nombre)</td>
+                        <td>@Html.DisplayNameFor(ser => ser.descripcion)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reg in Model)
+                    {
+                        <tr>
+                            <td>@reg.codigo_servicio</td>
+                            <td>@reg.nombre</td>
+                            <td>@reg.descripcion</td>
+                            <td>
+                                <a asp-controller="Servicio" asp-action="Edit"
+                                   asp-route-id="@reg.codigo_servicio" class="btn btn-outline-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+
+                                <a asp-controller="Servicio" asp-action="Delete"
+                                   asp-route-id="@reg.codigo_servicio" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+        else
+        {
+            <p>No existen registros</p>
+        }
+    </div>
+
+</div>
+

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<app_ds501.Models.Promocion>
+
+@{
+    ViewData["Title"] = "Promociones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listado de Promociones</h1>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Promocion" asp-action="Create">Agregar Promocion</a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {   
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(prom => prom.codigo_promocion)</td>
+                        <td>@Html.DisplayNameFor(prom => prom.nombre)</td>
+                        <td>@Html.DisplayNameFor(prom => prom.descripcion)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reg in Model)
+                    {
+                        <tr>
+                            <td>@reg.codigo_promocion</td>
+                            <td>@reg.nombre</td>
+                            <td>@reg.descripcion</td>
+                            <td>
+                                <a asp-controller="Promocion" asp-action="Edit"
+                                   asp-route-id="@reg.codigo_promocion" class="btn btn-outline-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+
+                                <a asp-controller="Promocion" asp-action="Delete"
+                                   asp-route-id="@reg.codigo_promocion" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+        else
+        {
+            <p>No existen registros</p>
+        }
+    </div>
+
+</div>
+

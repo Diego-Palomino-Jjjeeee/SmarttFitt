@@ -38,7 +38,6 @@ namespace app_ds501.Models
         [Required(ErrorMessage = "Ingrese sueldo")]
         [Display(Name = "Sueldo")]
         public double sueldo { get; set; }
-
+        /*aaLuis2*/
     }
 }
-/*aaLuis*/
